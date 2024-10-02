@@ -39,7 +39,7 @@
         this.IDPlaying = -1;
         this.fadeInTime  = 0.03;
         this.fadeOutTime = 0.01;
-        this.fadeDelay   = 0.01;
+        this.fadeDelay   = 0.03;
         this.lastAudioPosition = 0;
         this.positionUpdateInterval = 0.005;
 
