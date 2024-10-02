@@ -969,6 +969,8 @@ $.extend({ alert: function (message, title) {
         return featStr;
     }
 
+
+// ###################################################################
 // Jury test main object
 
 // inherit from ListeningTest
@@ -1071,13 +1073,16 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
         fileID = "Reference";
         row  = tab.insertRow(-1);
         cell[0] = row.insertCell(-1);
-        // cell[0].innerHTML = "<span class='testItem'>Reference</span>";
         cell[0].innerHTML =  '<button id="play'+fileID+'Btn" class="playButton" rel="'+fileID+'">Play</button>';
+        // cell[0].innerHTML = "<span class='testItem'>Reference</span>";
         cell[1] = row.insertCell(-1);
         cell[1].innerHTML = "<button class='stopButton'>Stop</button>";  	
+        // cell[1].innerHTML =  '<button id="play'+fileID+'Btn" class="playButton" rel="'+fileID+'">Play</button>';
         cell[2] = row.insertCell(-1);
-        cell[2].innerHTML = "<img id='ScaleImage' src='"+this.TestConfig.RateScalePng+"'/>";  	
+        cell[2].innerHTML = "<img id='ScaleImage' src='"+this.TestConfig.RateScalePng+"'/>"; 
+        // cell[2].innerHTML = "<button class='stopButton'>Stop</button>";  	
         cell[3] = row.insertCell(-1);
+        // cell[3].innerHTML = "<img id='ScaleImage' src='"+this.TestConfig.RateScalePng+"'/>";  	
         
         this.addAudio(TestIdx, fileID, fileID);
             
@@ -1098,18 +1103,18 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
             else
                 relID = fileID;
 
-            // var filePath = this.juryItems[i].getFilePath();  
-            // var fileName = filePath.split('/').pop(); 
-            
-            row[i]  = tab.insertRow(-1);
-            cell[0] = row[i].insertCell(-1);
             var adjectives = ['Bright', 'Warm', 'Soft', 'Clear', 'Sharp'];
             var adjective = adjectives[i];
+            row[i]  = tab.insertRow(-1);
+            cell[0] = row[i].insertCell(-1);
             cell[0].innerHTML = "<span class='testItem'>" +adjective +"</span>";
+            // cell[0].innerHTML = "<span class='testItem'>Test Item "+ (i+1)+"</span>";
             cell[1] = row[i].insertCell(-1);
+
             // cell[1].innerHTML =  '<button id="play'+relID+'Btn" class="playButton" rel="'+relID+'">Play</button>';
             // cell[2] = row[i].insertCell(-1);
-            // cell[2].innerHTML = "<button class='stopButton'>Stop</button>";  
+            // cell[2].innerHTML = "<button class='stopButton'>Stop</button>";
+
             cell[2] = row[i].insertCell(-1);
             var fileIDstr = "";
             if (this.TestConfig.ShowFileIDs) {
@@ -1118,6 +1123,7 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
             cell[2].innerHTML = "<div class='rateSlider' id='slider"+fileID+"' rel='"+relID+"'>"+fileIDstr+"</div>";
 
             this.addAudio(TestIdx, fileID, relID);
+            
             cell[3] = row[i].insertCell(-1);
             var adjectives = ['Bright', 'Warm', 'Soft', 'Clear', 'Sharp'];
             var adjective = adjectives[i];
@@ -1127,18 +1133,16 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
         // append the created table to the DOM
         $('#TableContainer').append(tab);
 
-        var JuryConf = this.TestConfig;
+        var juryConf = this.TestConfig;
         $('.rateSlider').each( function() {
             $(this).slider({
-                    value: JuryConf.RateDefaultValue,
-                    min: JuryConf.RateMinValue,
-                    max: JuryConf.RateMaxValue,
+                    value: juryConf.RateDefaultValue,
+                    min: juryConf.RateMinValue,
+                    max: juryConf.RateMaxValue,
                     animate: false,
                     orientation: "horizontal"
             });
-                    
-            $(this).slider('option', 'value', 0);
-            $(this).css('background-image', 'url('+JuryConf.RateScaleBgPng+')');
+            $(this).css('background-image', 'url('+juryConf.RateScaleBgPng+')');
         });
 
 }
@@ -1194,94 +1198,6 @@ JuryTest.prototype.formatResults = function () {
    
     return resultstring;
 }
-
-
-
-
-    // ###################################################################
-    // submit test results to server
-    ListeningTest.prototype.DownloadTestResults = function () {
-
-        var UserObj = new Object();
-        UserObj.UserName = $('#UserName').val();
-        UserObj.UserEmail = $('#UserEMail').val();
-        UserObj.UserComment = $('#UserComment').val();
-
-        var EvalResults = this.TestState.EvalResults;        
-        EvalResults.push(UserObj)
-
-        saveTextAsFile(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".txt");
-
-        this.TestState.TestIsRunning = 0;
-    }
-
-    // ###################################################################
-    // Check browser capabilities
-    ListeningTest.prototype.checkBrowserFeatures = function () {
-
-        var features = new Object();
-
-        features.webAPIs = new Array();
-        features.webAPIs['webAudio'] = this.audioPool.waContext!==false;
-        features.webAPIs['Blob']     = !!window.Blob;
-
-        features.audioFormats = new Array();
-        var a = document.createElement('audio');
-        features.audioFormats['WAV'] = !!(a.canPlayType && a.canPlayType('audio/wav; codecs="1"').replace(/no/, ''));
-        features.audioFormats['FLAC'] = !!(a.canPlayType && a.canPlayType('audio/flac').replace(/no/, ''));
-        features.audioFormats['OGG'] = !!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''));
-        features.audioFormats['MP3'] = !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
-        features.audioFormats['AAC'] = !!(a.canPlayType && a.canPlayType('audio/mp4; codecs="mp4a.40.2"').replace(/no/, ''));
-
-        this.browserFeatures = features;
-    }
-
-    // ###################################################################
-    // Get browser features formatted as a HTML string
-    ListeningTest.prototype.browserFeatureString = function () {
-        var featStr = "Available HTML5 browser features:";
-        if (this.browserFeatures.webAPIs['webAudio'])
-            featStr += " <span class='feature-available'>WebAudioAPI</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>WebAudioAPI</span>, ";
-
-        if (this.browserFeatures.webAPIs['Blob'])
-            featStr += " <span class='feature-available'>BlobAPI</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>BlobAPI</span>, ";
-
-        if (this.browserFeatures.audioFormats['WAV'])
-            featStr += " <span class='feature-available'>WAV</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>WAV</span>, ";
-
-        if (this.browserFeatures.audioFormats['FLAC'])
-            featStr += " <span class='feature-available'>FLAC</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>FLAC</span>, ";
-
-        if (this.browserFeatures.audioFormats['OGG'])
-            featStr += " <span class='feature-available'>Vorbis</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>Vorbis</span>, ";
-
-        if (this.browserFeatures.audioFormats['MP3'])
-            featStr += " <span class='feature-available'>MP3</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>MP3</span>, ";
-        
-        if (this.browserFeatures.audioFormats['AAC'])
-            featStr += " <span class='feature-available'>AAC</span>";
-        else
-            featStr += " <span class='feature-not-available'>AAC</span>";
-
-        return featStr;
-    }
-
-
-
-
-
 
 
 

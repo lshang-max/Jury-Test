@@ -877,125 +877,125 @@ $.extend({ alert: function (message, title) {
 
 
     // ###################################################################
-    // // submit test results to server
-    // ListeningTest.prototype.SubmitTestResults = function () {
-
-    //     var UserObj = new Object();
-    //     UserObj.UserName = $('#UserName').val();
-    //     UserObj.UserEmail = $('#UserEMail').val();
-    //     UserObj.UserComment = $('#UserComment').val();
-
-    //     var EvalResults = this.TestState.EvalResults;        
-    //     EvalResults.push(UserObj)
-        
-    //     var testHandle = this;
-    //     $.ajax({
-    //                 type: "POST",
-    //                 timeout: 5000,
-    //                 url: testHandle.TestConfig.BeaqleServiceURL,
-    //                 data: {'testresults':JSON.stringify(EvalResults), 'username':UserObj.UserName},
-    //                 dataType: 'json'})
-    //         .done( function (response){
-    //                 if (response.error==false) {
-    //                     $('#SubmitBox').html("Your submission was successful.<br/><br/>");
-    //                     testHandle.TestState.TestIsRunning = 0;
-    //                 } else {
-    //                     $('#SubmitError').show();
-    //                     $('#SubmitError > #ErrorCode').html(response.message);
-    //                     $("#SubmitBox > .submitOnline").hide();
-    //                     if (this.TestConfig.SupervisorContact) {
-    //                         $("#SubmitBox > .submitEmail").show();
-    //                         $(".supervisorEmail").html(this.TestConfig.SupervisorContact);
-    //                     }
-    //                     if (testHandle.browserFeatures.webAPIs['Blob']) {
-    //                         $("#SubmitBox > .submitDownload").show();
-    //                     } else {
-    //                         $("#SubmitBox > .submitDownload").hide();
-    //                         $("#ResultsBox").show();
-    //                     }
-    //                     $('#SubmitData').button('option',{ icons: { primary: 'ui-icon-alert' }});
-    //                 }
-    //             })
-    //         .fail (function (xhr, ajaxOptions, thrownError){
-    //                 $('#SubmitError').show();
-    //                 $('#SubmitError > #ErrorCode').html(xhr.status);
-    //                 $("#SubmitBox > .submitOnline").hide();
-    //                 if (this.TestConfig.SupervisorContact) {
-    //                     $("#SubmitBox > .submitEmail").show();
-    //                     $(".supervisorEmail").html(this.TestConfig.SupervisorContact);
-    //                 }
-    //                 if (testHandle.browserFeatures.webAPIs['Blob']) {
-    //                     $("#SubmitBox > .submitDownload").show();
-    //                 } else {
-    //                     $("#SubmitBox > .submitDownload").hide();
-    //                     $("#ResultsBox").show();
-    //                 }
-    //             });
-    //     $('#BtnSubmitData').button('option',{ icons: { primary: 'load-indicator' }});
-
-    // }
-
+    // submit test results to server
     ListeningTest.prototype.SubmitTestResults = function () {
+
         var UserObj = new Object();
         UserObj.UserName = $('#UserName').val();
         UserObj.UserEmail = $('#UserEMail').val();
         UserObj.UserComment = $('#UserComment').val();
-    
+
         var EvalResults = this.TestState.EvalResults;        
-        EvalResults.push(UserObj);
+        EvalResults.push(UserObj)
         
         var testHandle = this;
-    
-        // 将下面的 URL 替换为你的 Google Apps Script URL
-        var googleScriptURL = 'https://script.google.com/macros/s/AKfycbzJR9sw1EIMCuokq3KmE_7d4nREkpp5JMyUL0DZG_tHJkCUxyoTLhgA7132kfjzwslt/exec'; // 替换为你的 URL
-    
         $.ajax({
-            type: "POST",
-            timeout: 5000,
-            url: googleScriptURL,
-            contentType: 'application/json', // 确保请求的内容类型为 JSON
-            data: JSON.stringify({'testresults': EvalResults, 'username': UserObj.UserName}), // 发送 JSON 数据
-            dataType: 'json'
-        })
-        .done(function (response) {
-            if (response.error == false) {
-                $('#SubmitBox').html("Your submission was successful.<br/><br/>");
-                testHandle.TestState.TestIsRunning = 0;
-            } else {
-                $('#SubmitError').show();
-                $('#SubmitError > #ErrorCode').html(response.message);
-                $("#SubmitBox > .submitOnline").hide();
-                if (testHandle.TestConfig.SupervisorContact) {
-                    $("#SubmitBox > .submitEmail").show();
-                    $(".supervisorEmail").html(testHandle.TestConfig.SupervisorContact);
-                }
-                if (testHandle.browserFeatures.webAPIs['Blob']) {
-                    $("#SubmitBox > .submitDownload").show();
-                } else {
-                    $("#SubmitBox > .submitDownload").hide();
-                    $("#ResultsBox").show();
-                }
-                $('#SubmitData').button('option', { icons: { primary: 'ui-icon-alert' } });
-            }
-        })
-        .fail(function (xhr, ajaxOptions, thrownError) {
-            $('#SubmitError').show();
-            $('#SubmitError > #ErrorCode').html(xhr.status);
-            $("#SubmitBox > .submitOnline").hide();
-            if (testHandle.TestConfig.SupervisorContact) {
-                $("#SubmitBox > .submitEmail").show();
-                $(".supervisorEmail").html(testHandle.TestConfig.SupervisorContact);
-            }
-            if (testHandle.browserFeatures.webAPIs['Blob']) {
-                $("#SubmitBox > .submitDownload").show();
-            } else {
-                $("#SubmitBox > .submitDownload").hide();
-                $("#ResultsBox").show();
-            }
-        });
-    
-        $('#BtnSubmitData').button('option', { icons: { primary: 'load-indicator' } });
+                    type: "POST",
+                    timeout: 5000,
+                    url: testHandle.TestConfig.BeaqleServiceURL,
+                    data: {'testresults':JSON.stringify(EvalResults), 'username':UserObj.UserName},
+                    dataType: 'json'})
+            .done( function (response){
+                    if (response.error==false) {
+                        $('#SubmitBox').html("Your submission was successful.<br/><br/>");
+                        testHandle.TestState.TestIsRunning = 0;
+                    } else {
+                        $('#SubmitError').show();
+                        $('#SubmitError > #ErrorCode').html(response.message);
+                        $("#SubmitBox > .submitOnline").hide();
+                        if (this.TestConfig.SupervisorContact) {
+                            $("#SubmitBox > .submitEmail").show();
+                            $(".supervisorEmail").html(this.TestConfig.SupervisorContact);
+                        }
+                        if (testHandle.browserFeatures.webAPIs['Blob']) {
+                            $("#SubmitBox > .submitDownload").show();
+                        } else {
+                            $("#SubmitBox > .submitDownload").hide();
+                            $("#ResultsBox").show();
+                        }
+                        $('#SubmitData').button('option',{ icons: { primary: 'ui-icon-alert' }});
+                    }
+                })
+            .fail (function (xhr, ajaxOptions, thrownError){
+                    $('#SubmitError').show();
+                    $('#SubmitError > #ErrorCode').html(xhr.status);
+                    $("#SubmitBox > .submitOnline").hide();
+                    if (this.TestConfig.SupervisorContact) {
+                        $("#SubmitBox > .submitEmail").show();
+                        $(".supervisorEmail").html(this.TestConfig.SupervisorContact);
+                    }
+                    if (testHandle.browserFeatures.webAPIs['Blob']) {
+                        $("#SubmitBox > .submitDownload").show();
+                    } else {
+                        $("#SubmitBox > .submitDownload").hide();
+                        $("#ResultsBox").show();
+                    }
+                });
+        $('#BtnSubmitData').button('option',{ icons: { primary: 'load-indicator' }});
+
     }
+
+    // ListeningTest.prototype.SubmitTestResults = function () {
+    //     var UserObj = new Object();
+    //     UserObj.UserName = $('#UserName').val();
+    //     UserObj.UserEmail = $('#UserEMail').val();
+    //     UserObj.UserComment = $('#UserComment').val();
+    
+    //     var EvalResults = this.TestState.EvalResults;        
+    //     EvalResults.push(UserObj);
+        
+    //     var testHandle = this;
+    
+    //     // 将下面的 URL 替换为你的 Google Apps Script URL
+    //     var googleScriptURL = 'https://script.google.com/macros/s/AKfycbzJR9sw1EIMCuokq3KmE_7d4nREkpp5JMyUL0DZG_tHJkCUxyoTLhgA7132kfjzwslt/exec'; // 替换为你的 URL
+    
+    //     $.ajax({
+    //         type: "POST",
+    //         timeout: 5000,
+    //         url: googleScriptURL,
+    //         contentType: 'application/json', // 确保请求的内容类型为 JSON
+    //         data: JSON.stringify({'testresults': EvalResults, 'username': UserObj.UserName}), // 发送 JSON 数据
+    //         dataType: 'json'
+    //     })
+    //     .done(function (response) {
+    //         if (response.error == false) {
+    //             $('#SubmitBox').html("Your submission was successful.<br/><br/>");
+    //             testHandle.TestState.TestIsRunning = 0;
+    //         } else {
+    //             $('#SubmitError').show();
+    //             $('#SubmitError > #ErrorCode').html(response.message);
+    //             $("#SubmitBox > .submitOnline").hide();
+    //             if (testHandle.TestConfig.SupervisorContact) {
+    //                 $("#SubmitBox > .submitEmail").show();
+    //                 $(".supervisorEmail").html(testHandle.TestConfig.SupervisorContact);
+    //             }
+    //             if (testHandle.browserFeatures.webAPIs['Blob']) {
+    //                 $("#SubmitBox > .submitDownload").show();
+    //             } else {
+    //                 $("#SubmitBox > .submitDownload").hide();
+    //                 $("#ResultsBox").show();
+    //             }
+    //             $('#SubmitData').button('option', { icons: { primary: 'ui-icon-alert' } });
+    //         }
+    //     })
+    //     .fail(function (xhr, ajaxOptions, thrownError) {
+    //         $('#SubmitError').show();
+    //         $('#SubmitError > #ErrorCode').html(xhr.status);
+    //         $("#SubmitBox > .submitOnline").hide();
+    //         if (testHandle.TestConfig.SupervisorContact) {
+    //             $("#SubmitBox > .submitEmail").show();
+    //             $(".supervisorEmail").html(testHandle.TestConfig.SupervisorContact);
+    //         }
+    //         if (testHandle.browserFeatures.webAPIs['Blob']) {
+    //             $("#SubmitBox > .submitDownload").show();
+    //         } else {
+    //             $("#SubmitBox > .submitDownload").hide();
+    //             $("#ResultsBox").show();
+    //         }
+    //     });
+    
+    //     $('#BtnSubmitData').button('option', { icons: { primary: 'load-indicator' } });
+    // }
     
 
 
@@ -1230,85 +1230,85 @@ JuryTest.prototype.formatResults = function () {
 
 
 
-    // ###################################################################
-    // submit test results to server
-    ListeningTest.prototype.DownloadTestResults = function () {
+    // // ###################################################################
+    // // submit test results to server
+    // ListeningTest.prototype.DownloadTestResults = function () {
 
-        var UserObj = new Object();
-        UserObj.UserName = $('#UserName').val();
-        UserObj.UserEmail = $('#UserEMail').val();
-        UserObj.UserComment = $('#UserComment').val();
+    //     var UserObj = new Object();
+    //     UserObj.UserName = $('#UserName').val();
+    //     UserObj.UserEmail = $('#UserEMail').val();
+    //     UserObj.UserComment = $('#UserComment').val();
 
-        var EvalResults = this.TestState.EvalResults;        
-        EvalResults.push(UserObj)
+    //     var EvalResults = this.TestState.EvalResults;        
+    //     EvalResults.push(UserObj)
 
-        saveTextAsFile(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".txt");
+    //     saveTextAsFile(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".txt");
 
-        this.TestState.TestIsRunning = 0;
-    }
+    //     this.TestState.TestIsRunning = 0;
+    // }
 
-    // ###################################################################
-    // Check browser capabilities
-    ListeningTest.prototype.checkBrowserFeatures = function () {
+    // // ###################################################################
+    // // Check browser capabilities
+    // ListeningTest.prototype.checkBrowserFeatures = function () {
 
-        var features = new Object();
+    //     var features = new Object();
 
-        features.webAPIs = new Array();
-        features.webAPIs['webAudio'] = this.audioPool.waContext!==false;
-        features.webAPIs['Blob']     = !!window.Blob;
+    //     features.webAPIs = new Array();
+    //     features.webAPIs['webAudio'] = this.audioPool.waContext!==false;
+    //     features.webAPIs['Blob']     = !!window.Blob;
 
-        features.audioFormats = new Array();
-        var a = document.createElement('audio');
-        features.audioFormats['WAV'] = !!(a.canPlayType && a.canPlayType('audio/wav; codecs="1"').replace(/no/, ''));
-        features.audioFormats['FLAC'] = !!(a.canPlayType && a.canPlayType('audio/flac').replace(/no/, ''));
-        features.audioFormats['OGG'] = !!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''));
-        features.audioFormats['MP3'] = !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
-        features.audioFormats['AAC'] = !!(a.canPlayType && a.canPlayType('audio/mp4; codecs="mp4a.40.2"').replace(/no/, ''));
+    //     features.audioFormats = new Array();
+    //     var a = document.createElement('audio');
+    //     features.audioFormats['WAV'] = !!(a.canPlayType && a.canPlayType('audio/wav; codecs="1"').replace(/no/, ''));
+    //     features.audioFormats['FLAC'] = !!(a.canPlayType && a.canPlayType('audio/flac').replace(/no/, ''));
+    //     features.audioFormats['OGG'] = !!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''));
+    //     features.audioFormats['MP3'] = !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
+    //     features.audioFormats['AAC'] = !!(a.canPlayType && a.canPlayType('audio/mp4; codecs="mp4a.40.2"').replace(/no/, ''));
 
-        this.browserFeatures = features;
-    }
+    //     this.browserFeatures = features;
+    // }
 
-    // ###################################################################
-    // Get browser features formatted as a HTML string
-    ListeningTest.prototype.browserFeatureString = function () {
-        var featStr = "Available HTML5 browser features:";
-        if (this.browserFeatures.webAPIs['webAudio'])
-            featStr += " <span class='feature-available'>WebAudioAPI</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>WebAudioAPI</span>, ";
+    // // ###################################################################
+    // // Get browser features formatted as a HTML string
+    // ListeningTest.prototype.browserFeatureString = function () {
+    //     var featStr = "Available HTML5 browser features:";
+    //     if (this.browserFeatures.webAPIs['webAudio'])
+    //         featStr += " <span class='feature-available'>WebAudioAPI</span>, ";
+    //     else
+    //         featStr += " <span class='feature-not-available'>WebAudioAPI</span>, ";
 
-        if (this.browserFeatures.webAPIs['Blob'])
-            featStr += " <span class='feature-available'>BlobAPI</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>BlobAPI</span>, ";
+    //     if (this.browserFeatures.webAPIs['Blob'])
+    //         featStr += " <span class='feature-available'>BlobAPI</span>, ";
+    //     else
+    //         featStr += " <span class='feature-not-available'>BlobAPI</span>, ";
 
-        if (this.browserFeatures.audioFormats['WAV'])
-            featStr += " <span class='feature-available'>WAV</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>WAV</span>, ";
+    //     if (this.browserFeatures.audioFormats['WAV'])
+    //         featStr += " <span class='feature-available'>WAV</span>, ";
+    //     else
+    //         featStr += " <span class='feature-not-available'>WAV</span>, ";
 
-        if (this.browserFeatures.audioFormats['FLAC'])
-            featStr += " <span class='feature-available'>FLAC</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>FLAC</span>, ";
+    //     if (this.browserFeatures.audioFormats['FLAC'])
+    //         featStr += " <span class='feature-available'>FLAC</span>, ";
+    //     else
+    //         featStr += " <span class='feature-not-available'>FLAC</span>, ";
 
-        if (this.browserFeatures.audioFormats['OGG'])
-            featStr += " <span class='feature-available'>Vorbis</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>Vorbis</span>, ";
+    //     if (this.browserFeatures.audioFormats['OGG'])
+    //         featStr += " <span class='feature-available'>Vorbis</span>, ";
+    //     else
+    //         featStr += " <span class='feature-not-available'>Vorbis</span>, ";
 
-        if (this.browserFeatures.audioFormats['MP3'])
-            featStr += " <span class='feature-available'>MP3</span>, ";
-        else
-            featStr += " <span class='feature-not-available'>MP3</span>, ";
+    //     if (this.browserFeatures.audioFormats['MP3'])
+    //         featStr += " <span class='feature-available'>MP3</span>, ";
+    //     else
+    //         featStr += " <span class='feature-not-available'>MP3</span>, ";
         
-        if (this.browserFeatures.audioFormats['AAC'])
-            featStr += " <span class='feature-available'>AAC</span>";
-        else
-            featStr += " <span class='feature-not-available'>AAC</span>";
+    //     if (this.browserFeatures.audioFormats['AAC'])
+    //         featStr += " <span class='feature-available'>AAC</span>";
+    //     else
+    //         featStr += " <span class='feature-not-available'>AAC</span>";
 
-        return featStr;
-    }
+    //     return featStr;
+    // }
 
 
 
