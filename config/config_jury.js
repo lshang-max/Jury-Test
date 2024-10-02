@@ -19,7 +19,7 @@ var TestConfig = {
   "RandomizeTestOrder": true,
   "MaxTestsPerRun": 25,
   "RequireMaxRating": false,
-  "AudioRoot": "",
+  "AudioRoot": "https://raw.githubusercontent.com/lshang-max/Jury-Test/main/",
    
   "Testsets": [
     // {
