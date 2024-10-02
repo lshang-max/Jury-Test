@@ -19,7 +19,7 @@ var TestConfig = {
   "RandomizeTestOrder": true,
   "MaxTestsPerRun": 25,
   "RequireMaxRating": false,
-  "AudioRoot": "file:///C:/Users/lala5/Desktop/MA/beaqlejs-0.3_for_jury_test/audio/",
+  "AudioRoot": "https://github.com/lshang-max/Jury-Test/raw/refs/heads/main/audio/",
    
   "Testsets": [
     // {
