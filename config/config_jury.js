@@ -19,7 +19,7 @@ var TestConfig = {
   "RandomizeTestOrder": true,
   "MaxTestsPerRun": 25,
   "RequireMaxRating": false,
-  "AudioRoot": "https://raw.githubusercontent.com/lshang-max/Jury-Test/main/audio/",
+  "AudioRoot": "",
    
   "Testsets": [
     // {
@@ -33,11 +33,11 @@ var TestConfig = {
       "Name": "Test Sound 1",
       "TestID": "id_1",
       "Files": {
-            "Reference": "Measurement08_3s.mp3",
-            "1": "Measurement08_3s.mp3",
-            "2": "Measurement08_3s.mp3",
-            "3": "Measurement08_3s.mp3",
-            "4": "Measurement08_3s.mp3"
+            "Reference": "audio/Measurement08_3s.mp3",
+            "1": "audio/Measurement08_3s.mp3",
+            "2": "audio/Measurement08_3s.mp3",
+            "3": "audio/Measurement08_3s.mp3",
+            "4": "audio/Measurement08_3s.mp3"
         }
     },
     // 
@@ -45,11 +45,11 @@ var TestConfig = {
       "Name": "Test Sound 2",
       "TestID": "id_2",
       "Files": {
-            "Reference": "Measurement08_3s.wav",
-            "1": "Measurement08_3s.wav",
-            "2": "Measurement08_3s.wav",
-            "3": "Measurement08_3s.wav",
-            "4": "Measurement08_3s.wav"
+            "Reference": "audio/Measurement08_3s.wav",
+            "1": "audio/vMeasurement08_3s.wav",
+            "2": "audio/Measurement08_3s.wav",
+            "3": "audio/Measurement08_3s.wav",
+            "4": "audio/Measurement08_3s.wav"
         }
     },
     // 
@@ -57,11 +57,11 @@ var TestConfig = {
       "Name": "Test Sound 3",
       "TestID": "id_3",
       "Files": {
-            "Reference": "Measurement08_3s.wav",
-            "1": "Measurement08_3s.wav",
-            "2": "Measurement08_3s.wav",
-            "3": "Measurement08_3s.wav",
-            "4": "Measurement08_3s.wav"
+            "Reference": "audio/Measurement08_3s.wav",
+            "1": "audio/Measurement08_3s.wav",
+            "2": "audio/Measurement08_3s.wav",
+            "3": "audio/Measurement08_3s.wav",
+            "4": "audio/Measurement08_3s.wav"
         }
     },
     //    
@@ -69,11 +69,11 @@ var TestConfig = {
        "Name": "Test Sound 4",
        "TestID": "id_4",
        "Files": {
-            "Reference": "Measurement08_3s.wav",
-            "1": "Measurement08_3s.wav",
-            "2": "Measurement08_3s.wav",
-            "3": "Measurement08_3s.wav",
-            "4": "Measurement08_3s.wav"
+            "Reference": "audio/Measurement08_3s.wav",
+            "1": "audio/Measurement08_3s.wav",
+            "2": "audio/Measurement08_3s.wav",
+            "3": "audio/Measurement08_3s.wav",
+            "4": "audio/Measurement08_3s.wav"
         }
     },
 
