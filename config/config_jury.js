@@ -33,11 +33,11 @@ var TestConfig = {
       "Name": "Test Sound 1",
       "TestID": "id_1",
       "Files": {
-            "Reference": "audio/Measurement08_3s.wav",
-            "1": "audio/Measurement08_3s.wav",
-            "2": "audio/Measurement08_3s.wav",
-            "3": "audio/Measurement08_3s.wav",
-            "4": "audio/Measurement08_3s.wav"
+            "Reference": "audio/Measurement08_3s.mp3",
+            "1": "audio/Measurement08_3s.mp3",
+            "2": "audio/Measurement08_3s.mp3",
+            "3": "audio/Measurement08_3s.mp3",
+            "4": "audio/Measurement08_3s.mp3"
         }
     },
     // 
