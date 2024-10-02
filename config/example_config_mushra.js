@@ -23,33 +23,33 @@ var TestConfig = {
       "Name": "Schubert 1",
       "TestID": "id1_1",
       "Files": {
-            "Reference": "audio/schubert_ref.wav",
-            "1": "audio/schubert_1.wav",
-            "2": "audio/schubert_2.wav",
-            "3": "audio/schubert_3.wav",
-            "4": "audio/schubert_anch.wav"
+            "Reference": "audio/Measurement08_3s.wav",
+            "1": "audio/Measurement08_3s.wav",
+            "2": "audio/Measurement08_3s.wav",
+            "3": "audio/Measurement08_3s.wav",
+            "4": "audio/Measurement08_3s.wav"
         }
     },
     {
       "Name": "Schubert 2",
       "TestID": "id1_2",
       "Files": {
-            "Reference": "audio/schubert_ref.wav",
-            "1": "audio/schubert_1.wav",
-            "2": "audio/schubert_2.wav",
-            "3": "audio/schubert_3.wav",
-            "4": "audio/schubert_anch.wav"
+            "Reference": "audio/Measurement08_3s.wav",
+            "1": "audio/Measurement08_3s.wav",
+            "2": "audio/Measurement08_3s.wav",
+            "3": "audio/Measurement08_3s.wav",
+            "4": "audio/Measurement08_3s.wav"
         }
     },
     {
       "Name": "Schubert 3",
       "TestID": "id1_3",
       "Files": {
-            "Reference": "audio/schubert_ref.wav",
-            "1": "audio/schubert_1.wav",
-            "2": "audio/schubert_2.wav",
-            "3": "audio/schubert_3.wav",
-            "4": "audio/schubert_anch.wav"
+            "Reference": "audio/Measurement08_3s.wav",
+            "1": "audio/Measurement08_3s.wav",
+            "2": "audio/Measurement08_3s.wav",
+            "3": "audio/Measurement08_3s.wav",
+            "4": "audio/Measurement08_3s.wav"
         }
     },
     //    
@@ -57,11 +57,11 @@ var TestConfig = {
        "Name": "Castanets",
        "TestID": "id2_1",
        "Files": {
-            "Reference": "audio/castanets_ref.wav",
-            "1": "audio/castanets_1.wav",
-            "2": "audio/castanets_2.wav",
-            "3": "audio/castanets_3.wav",
-            "4": "audio/castanets_anch.wav"
+            "Reference": "audio/Measurement08_3s.wav",
+            "1": "audio/Measurement08_3s.wav",
+            "2": "audio/Measurement08_3s.wav",
+            "3": "audio/Measurement08_3s.wav",
+            "4": "audio/Measurement08_3s.wav"
         }
     },
   ]
