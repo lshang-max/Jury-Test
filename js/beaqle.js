@@ -173,8 +173,45 @@
             audiotag.load();
         }
     }
+
+
+
+
+    // AudioPool.prototype.addAudio = async function(path, ID) {
+    //     return new Promise(async (resolve, reject) => {
+    //         try {
+    //             const response = await fetch(path);
+    //             const arrayBuffer = await response.arrayBuffer();
+    //             const audioBuffer = await this.waContext.decodeAudioData(arrayBuffer);
     
-    // play audio with specified ID
+    //             const source = this.waContext.createBufferSource();
+    //             source.buffer = audioBuffer;
+    
+    //             const gainNode = this.waContext.createGain();
+    //             source.connect(gainNode);
+    //             gainNode.connect(this.waContext.destination);
+    //             gainNode.gain.value = 0.0000001;
+    //             gainNode.gain.setValueAtTime(0.0000001, this.waContext.currentTime);
+    
+    //             this.gainNodes[ID] = gainNode;
+    //             this.audioSources[ID] = source;
+    
+    //             // Resolve the promise when audio has loaded successfully
+    //             resolve();
+    
+    //         } catch (error) {
+    //             console.error("Error loading audio:", error);
+    //             if (typeof this.onError === "function") {
+    //                 this.onError(error);
+    //             }
+    //             // Reject the promise if there is an error
+    //             reject(error);
+    //         }
+    //     });
+    // };
+    
+    
+    // // play audio with specified ID
     AudioPool.prototype.play = function(ID){
         var audiotag = $('#'+this.PoolID+' > #audio'+ID).get(0);
         
@@ -814,6 +851,30 @@ $.extend({ alert: function (message, title) {
                                 this.TestConfig.Testsets[TestIdx].Files[fileID],
                                 relID)
     }
+
+
+    // ListeningTest.prototype.addAudio = async function (TestIdx, fileID, relID) {
+    //     this.TestState.AudiosInLoadQueue += 1;
+        
+    //     try {
+    //         // Wait for audioPool.addAudio to finish (or fail)
+    //         await this.audioPool.addAudio(
+    //             this.TestConfig.AudioRoot + this.TestConfig.Testsets[TestIdx].Files[fileID],
+    //             relID
+    //         );
+            
+    //         // If successful, decrement the queue
+    //         this.TestState.AudiosInLoadQueue -= 1;
+    //     } catch (error) {
+    //         // Handle the error, maybe log it or provide feedback
+    //         console.error("Failed to load audio:", error);
+            
+    //         // Even on error, you should decrement the queue count
+    //         this.TestState.AudiosInLoadQueue -= 1;
+    //     }
+    // }
+    
+
 
     // ###################################################################
     // // submit test results to server
