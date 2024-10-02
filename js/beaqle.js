@@ -792,6 +792,8 @@ $.extend({ alert: function (message, title) {
     //play audio with specified html ID
     ListeningTest.prototype.playAudio = function (id) {
         
+        this.resumeAudioContext();
+
         this.audioPool.pause();
 
         // reset all buttons and sliders
@@ -804,7 +806,17 @@ $.extend({ alert: function (message, title) {
         
         this.audioPool.play(id);
     }
-
+    
+    // 恢复 AudioContext 方法
+    ListeningTest.prototype.resumeAudioContext = function () {
+        if (this.waContext && this.waContext.state === 'suspended') {
+            this.waContext.resume().then(() => {
+                console.log("AudioContext resumed successfully.");
+            }).catch((err) => {
+                console.error("Error resuming AudioContext: ", err);
+            });
+        }
+    };
     // ###################################################################
     // add and load audio file with specified ID
     ListeningTest.prototype.addAudio = function (TestIdx, fileID, relID) {
