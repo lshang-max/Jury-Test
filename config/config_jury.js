@@ -19,7 +19,6 @@ var TestConfig = {
   "RandomizeTestOrder": true,
   "MaxTestsPerRun": 25,
   "RequireMaxRating": false,
-  "AudioRoot": "",
    
   "Testsets": [
     // {
@@ -46,7 +45,7 @@ var TestConfig = {
       "TestID": "id_2",
       "Files": {
             "Reference": "audio/Measurement08_3s.wav",
-            "1": "audio/vMeasurement08_3s.wav",
+            "1": "audio/Measurement08_3s.wav",
             "2": "audio/Measurement08_3s.wav",
             "3": "audio/Measurement08_3s.wav",
             "4": "audio/Measurement08_3s.wav"
