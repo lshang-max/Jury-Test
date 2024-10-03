@@ -985,23 +985,29 @@ JuryTest.prototype.constructor = JuryTest;
 
 
 // ###################################################################
-// create random mapping to test files
+// create random mapping to test files (Direct sequential mapping)
 JuryTest.prototype.createFileMapping = function (TestIdx) {
     var NumFiles = $.map(this.TestConfig.Testsets[TestIdx].Files, function(n, i) { return i; }).length;
     var fileMapping = new Array(NumFiles);    
-
-    $.each(this.TestConfig.Testsets[TestIdx].Files, function(index, value) { 
-
-        do {
-            var RandFileNumber = Math.floor(Math.random()*(NumFiles));
-            if (RandFileNumber>NumFiles-1) RandFileNumber = NumFiles-1;
-        } while (typeof fileMapping[RandFileNumber] !== 'undefined');
-
-        if (RandFileNumber<0) alert(fileMapping);
-        fileMapping[RandFileNumber] = index;
-    });
     
-    this.TestState.FileMappings[TestIdx] = fileMapping;
+    //random mapping
+    // $.each(this.TestConfig.Testsets[TestIdx].Files, function(index, value) { 
+
+    //     do {
+    //         var RandFileNumber = Math.floor(Math.random()*(NumFiles));
+    //         if (RandFileNumber>NumFiles-1) RandFileNumber = NumFiles-1;
+    //     } while (typeof fileMapping[RandFileNumber] !== 'undefined');
+
+    //     if (RandFileNumber<0) alert(fileMapping);
+    //     fileMapping[RandFileNumber] = index;
+    // });
+
+    // Direct sequential mapping
+    $.each(this.TestConfig.Testsets[TestIdx].Files, function(index, value) { 
+        fileMapping[index] = index; 
+    });
+
+    this.TestState.FileMappings[TestIdx] = fileMapping; 
 }
 
 // ###################################################################

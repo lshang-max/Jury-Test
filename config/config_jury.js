@@ -16,7 +16,7 @@ var TestConfig = {
   "EnableOnlineSubmission": true,
   "BeaqleServiceURL": "",
   "SupervisorContact": "liang.shang@rwth-aachen.de",
-  "RandomizeTestOrder": false,
+  "RandomizeTestOrder": true,
   "MaxTestsPerRun": 4,
   "RequireMaxRating": false,
    
