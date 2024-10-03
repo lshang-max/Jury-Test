@@ -44,7 +44,7 @@ var TestConfig = {
       "Name": "Test Sound 2",
       "TestID": "id_2",
       "Files": {
-            "Reference": "audio/Measurement12_3s.wav",
+            "Reference": "Measurement12_3s.wav",
             "1": "",
             "2": "",
             "3": "",
