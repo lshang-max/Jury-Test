@@ -14,7 +14,7 @@ var TestConfig = {
   "LoopByDefault": true,
   "EnableABLoop": true,
   "EnableOnlineSubmission": true,
-  "BeaqleServiceURL": "",
+  "BeaqleServiceURL": "https://github.com/lshang-max/Jury-Test/tree/main/web_service",
   "SupervisorContact": "liang.shang@rwth-aachen.de",
   "RandomizeTestOrder": true,
   "MaxTestsPerRun": 4,
