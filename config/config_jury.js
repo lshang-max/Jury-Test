@@ -8,7 +8,7 @@ var TestConfig = {
 
   "RateMinValue": 1,
   "RateMaxValue": 5,
-  "RateDefaultValue":0,
+  "RateDefaultValue":1,
   "ShowFileIDs": false,
   "ShowResults": false,
   "LoopByDefault": true,
@@ -16,7 +16,7 @@ var TestConfig = {
   "EnableOnlineSubmission": true,
   "BeaqleServiceURL": "",
   "SupervisorContact": "liang.shang@rwth-aachen.de",
-  "RandomizeTestOrder": true,
+  "RandomizeTestOrder": false,
   "MaxTestsPerRun": 4,
   "RequireMaxRating": false,
    
