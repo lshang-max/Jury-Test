@@ -17,7 +17,7 @@ var TestConfig = {
   "BeaqleServiceURL": "",
   "SupervisorContact": "liang.shang@rwth-aachen.de",
   "RandomizeTestOrder": true,
-  "MaxTestsPerRun": 25,
+  "MaxTestsPerRun": 4,
   "RequireMaxRating": false,
    
   "Testsets": [
