@@ -1004,7 +1004,7 @@ JuryTest.prototype.createFileMapping = function (TestIdx) {
 
     // Direct sequential mapping
     $.each(this.TestConfig.Testsets[TestIdx].Files, function(index, value) { 
-        fileMapping[index] = index; 
+     fileMapping[index] = index; 
     });
 
     this.TestState.FileMappings[TestIdx] = fileMapping; 
@@ -1104,12 +1104,14 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
             
             var fileID = this.TestState.FileMappings[TestIdx][i];
             var relID  = "";
-            if (fileID === "Reference")
-                relID = "HiddenRef";
-            else
-                relID = fileID;
 
-            var adjectives = ['Bright', 'Warm', 'Soft', 'Clear', 'Sharp'];
+            if (fileID === "Reference") {
+                relID = "HiddenRef";  
+            } else {
+                relID = fileID;  
+            }
+            
+            var adjectives = ['','Bright', 'Warm', 'Soft', 'Clear', 'Sharp'];
             var adjective = adjectives[i];
             row[i]  = tab.insertRow(-1);
             cell[0] = row[i].insertCell(-1);
@@ -1131,10 +1133,10 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
             // this.addAudio(TestIdx, fileID, relID);
             
             cell[3] = row[i].insertCell(-1);
-            var adjectives = ['Bright', 'Warm', 'Soft', 'Clear', 'Sharp'];
+            var adjectives = [ '','Bright', 'Warm', 'Soft', 'Clear', 'Sharp'];
             var adjective = adjectives[i];
             cell[3].innerHTML = "<span class='testItem'>" +adjective +"</span>";
-        }        
+        }              
 
         // append the created table to the DOM
         $('#TableContainer').append(tab);
@@ -1167,12 +1169,13 @@ JuryTest.prototype.formatResults = function () {
         this.TestState.EvalResults[i].TestID    = this.TestConfig.Testsets[i].TestID;
 
         if (this.TestState.TestSequence.indexOf(i)>=0) {
-            this.TestState.EvalResults[i].Runtime   = this.TestState.Runtime[i];
+            // this.TestState.EvalResults[i].Runtime   = this.TestState.Runtime[i];
             this.TestState.EvalResults[i].rating    = new Object();
             this.TestState.EvalResults[i].filename  = new Object();
 
-            resultstring += "<p><b>"+this.TestConfig.Testsets[i].Name + "</b> ("+this.TestConfig.Testsets[i].TestID+"), Runtime:" + this.TestState.Runtime[i]/1000 + "sec </p>\n";
-
+            // resultstring += "<p><b>"+this.TestConfig.Testsets[i].Name + "</b> ("+this.TestConfig.Testsets[i].TestID+"), Runtime:" + this.TestState.Runtime[i]/1000 + "sec </p>\n";
+            resultstring += "<p><b>" + this.TestConfig.Testsets[i].Name  + "</b> (" + this.TestConfig.Testsets[i].TestID + ")</p>\n";
+            
             var tab = document.createElement('table');
             var row;
             var cell;
@@ -1185,7 +1188,14 @@ JuryTest.prototype.formatResults = function () {
 
             var fileArr    = this.TestConfig.Testsets[i].Files;
             var testResult = this.TestState.EvalResults[i];
-
+            
+            // Add reference file name
+            row  = tab.insertRow(-1);
+            cell = row.insertCell(-1);
+            cell.innerHTML = fileArr["Reference"];
+            cell = row.insertCell(-1);
+            cell.innerHTML = "Reference";
+            testResult.filename["Reference"] = fileArr["Reference"];
 
             $.each(this.TestState.Ratings[i], function(fileID, rating) { 
                 row  = tab.insertRow(-1);
@@ -1204,6 +1214,10 @@ JuryTest.prototype.formatResults = function () {
    
     return resultstring;
 }
+
+
+
+
 
 
 
