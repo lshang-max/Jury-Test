@@ -989,7 +989,7 @@ JuryTest.prototype.constructor = JuryTest;
 JuryTest.prototype.createFileMapping = function (TestIdx) {
     var NumFiles = $.map(this.TestConfig.Testsets[TestIdx].Files, function(n, i) { return i; }).length;
     var fileMapping = new Array(NumFiles);    
-    
+
     //random mapping
     // $.each(this.TestConfig.Testsets[TestIdx].Files, function(index, value) { 
 
@@ -1062,7 +1062,7 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
             $('#TableContainer > table').remove();
         }
 
-        // create random file mapping if not yet done
+        // // create random file mapping if not yet done
         if (!this.TestState.FileMappings[TestIdx]) {
                 this.createFileMapping(TestIdx);
         }
@@ -1100,7 +1100,7 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
         var rateMax = this.TestConfig.RateMaxValue;
             
         // add test items
-        for (var i = 0; i < this.TestState.FileMappings[TestIdx].length; i++) { 
+        for (var i = 1; i < this.TestState.FileMappings[TestIdx].length; i++) { 
             
             var fileID = this.TestState.FileMappings[TestIdx][i];
             var relID  = "";
