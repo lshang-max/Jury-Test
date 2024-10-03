@@ -1122,7 +1122,7 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
             }
             cell[2].innerHTML = "<div class='rateSlider' id='slider"+fileID+"' rel='"+relID+"'>"+fileIDstr+"</div>";
 
-            this.addAudio(TestIdx, fileID, relID);
+            // this.addAudio(TestIdx, fileID, relID);
             
             cell[3] = row[i].insertCell(-1);
             var adjectives = ['Bright', 'Warm', 'Soft', 'Clear', 'Sharp'];
@@ -1213,8 +1213,6 @@ MushraTest.prototype.constructor = MushraTest;
 
 
 // implement specific code
-
-
 // ###################################################################
 // create random mapping to test files
 MushraTest.prototype.createFileMapping = function (TestIdx) {

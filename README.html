@@ -51,31 +51,31 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Table of contents</p>
 <ol style="list-style-type: decimal">
 <li><a href="#1-description">Description</a></li>
-<li><a href="#2-basic-setup">Basic Setup</a></li>
-<li><a href="#3-test-configuration">Test Configuration</a></li>
-<li><a href="#4-browser-support">Browser Support</a></li>
+<!-- <li><a href="#2-basic-setup">Basic Setup</a></li> -->
+<li><a href="#2-test-configuration">Test Configuration</a></li>
+<!-- <li><a href="#4-browser-support">Browser Support</a></li>
 <li><a href="#5-online-submission">Online Submission</a></li>
-<li><a href="#6-internals">Internals</a></li>
-<li><a href="#7-contact">Contact</a></li>
-<li><a href="#8-license">License</a></li>
+<li><a href="#6-internals">Internals</a></li> -->
+<li><a href="#3-contact">Contact</a></li>
+<li><a href="#4-license">License</a></li>
 </ol>
 <h1 id="description">1. Description</h1>
 <p>BeaqleJS (<strong>b</strong>rowser based <strong>e</strong>valuation of <strong>a</strong>udio <strong>q</strong>uality and <strong>c</strong>omparative <strong>l</strong>istening <strong>e</strong>nvironment) provides a framework to create browser based listening tests and is purely based on open web standards like HTML5 and Javascript. Therefore, the test runs in any modern web browser and allows an easy distribution of the test environment to a significant amount of participants in combination with simple configuration. Currently it supports ABX and MUSHRA style test procedures but can be easily extended to other test schemes.</p>
-<p>To get a better impression about its functionality there are two demo test sites for the ABX and MUSHRA test classes:</p>
+<p>To get a better impression about its functionality there are one test sites for the Jury test classes:</p>
 <ul>
-<li><a href="http://hsu-ant.github.io/beaqlejs/demo/abx/" class="uri">http://hsu-ant.github.io/beaqlejs/demo/abx/</a></li>
-<li><a href="http://hsu-ant.github.io/beaqlejs/demo/mushra/" class="uri">http://hsu-ant.github.io/beaqlejs/demo/mushra/</a></li>
-</ul>
-<p>BeaqleJS has been presented at the <a href="http://lac.linuxaudio.org/2014/">Linux Audio Conference 2014</a> at the ZKM in Karlsruhe, Germany. The original <a href="http://lac.linuxaudio.org/2014/papers/26.pdf">paper</a> and presentation <a href="http://lac.linuxaudio.org/2014/download/SKraft_BeaqleJS.pdf">slides</a> are available from the conference archive. However, meanwhile most of the paper content has been updated and merged into this documentation.</p>
+<li><a href="https://lshang-max.github.io/Jury-Test/" class="uri">https://lshang-max.github.io/Jury-Test/</a></li>
+<!-- <li><a href="http://hsu-ant.github.io/beaqlejs/demo/mushra/" class="uri">http://hsu-ant.github.io/beaqlejs/demo/mushra/</a></li> -->
+<!-- </ul> -->
+<!-- <p>BeaqleJS has been presented at the <a href="http://lac.linuxaudio.org/2014/">Linux Audio Conference 2014</a> at the ZKM in Karlsruhe, Germany. The original <a href="http://lac.linuxaudio.org/2014/papers/26.pdf">paper</a> and presentation <a href="http://lac.linuxaudio.org/2014/download/SKraft_BeaqleJS.pdf">slides</a> are available from the conference archive. However, meanwhile most of the paper content has been updated and merged into this documentation.</p>
 <p>If you want to cite BeaqleJS in a publication please use</p>
 <blockquote>
 <p>S. Kraft, U. Zölzer: &quot;BeaqleJS: HTML5 and JavaScript based Framework for the Subjective Evaluation of Audio Quality&quot;, <em>Linux Audio Conference</em>, 2014, Karlsruhe, Germany</p>
 </blockquote>
 <p>as a reference or link to our GitHub repository</p>
 <blockquote>
-<p>https://github.com/HSU-ANT/beaqlejs</p>
+<p>https://github.com/HSU-ANT/beaqlejs</p> -->
 </blockquote>
-<h1 id="basic-setup">2. Basic Setup</h1>
+<!-- <h1 id="basic-setup">2. Basic Setup</h1>
 <ol style="list-style-type: decimal">
 <li>Download the test scripts
 <ul>
@@ -126,9 +126,10 @@ $&gt; docker-compose stop</code></pre>
 <p>Completely remove the service:</p>
 <pre><code>$&gt; docker-compose down</code></pre>
 <p>The status of the service can be inspected with:</p>
-<pre><code>$&gt; docker-compose ps </code></pre>
-<h1 id="test-configuration">3. Test Configuration</h1>
-<h2 id="general-options">3.1 General Options</h2>
+<pre><code>$&gt; docker-compose ps </code></pre> -->
+
+<h1 id="test-configuration">2. Test Configuration</h1>
+<h2 id="general-options">2.1 General Options</h2>
 <p>The available options can be divided into a set of general options which apply to all test classes and other options, including file declarations, that are specific for a single test class.</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript"><span class="kw">var</span> TestConfig <span class="op">=</span> <span class="op">{</span>
   <span class="st">&quot;TestName&quot;</span><span class="op">:</span> <span class="st">&quot;My Listening Test&quot;</span><span class="op">,</span>   <span class="co">// &lt;=  Name of the test</span>
@@ -150,7 +151,7 @@ $&gt; docker-compose stop</code></pre>
   <span class="st">&quot;Testsets&quot;</span><span class="op">:</span> [ <span class="op">{</span>...<span class="op">},</span> <span class="op">{</span>...<span class="op">},</span> ... ]<span class="op">,</span> <span class="co">// &lt;=  Definition of test sets and files, more</span>
                                      <span class="co">//     details below</span>
 <span class="op">}</span></code></pre></div>
-<h2 id="abx">3.2 ABX</h2>
+<!-- <h2 id="abx">3.2 ABX</h2>
 <p>In an ABX test three items named A, B and X are presented to the listener, whereas X is randomly selected to be either the same as A or B. The listener has to identify which item is hidden behind X, or which one (A or B) is closest to X. If the listener is able to find the correct item, it reveals that there are perceptual differences between A and B.</p>
 <p>A typical application of ABX tests would be the evaluation of the transparency of audio codecs. For example item A could be an unencoded audio snippet and B is the same snippet but encoded with a lossy codec. When the listener is not able to identify if A or B was hidden in X (results are randomly distributed), one can assume that the audio coding was transparent</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">...                                  <span class="co">// &lt;=  General options</span>
@@ -164,9 +165,9 @@ $&gt; docker-compose stop</code></pre>
   <span class="op">},</span>
   <span class="op">{</span> ... <span class="op">},</span>                           <span class="co">// &lt;=  Next test set starts here</span>
   ....
-]</code></pre></div>
-<h2 id="mushra">3.3 MUSHRA</h2>
-<p>In a MUSHRA test (ITU-R BS.1116-1) the listener gets presented an item marked as reference together with several anonymous test items. By using a slider for each test item he has to rate how close the items are to the reference on top. Among the test items there is usually also one hidden reference and one, or several, anchor signals to prove the validity of the ratings and the qualification of the participants.</p>
+]</code></pre></div> -->
+<h2 id="mushra">2.3 Jury Test</h2>
+<p>In a Jury test (ITU-R BS.1116-1) the listener gets presented an item marked as reference together with several anonymous test items. By using a slider for each test item he has to rate how close the items are to the reference on top. Among the test items there is usually also one hidden reference and one, or several, anchor signals to prove the validity of the ratings and the qualification of the participants.</p>
 <p>Contrary to ABX tests the MUSHRA procedure allows more detailed evaluations as it is possible to compare more than one algorithm to a reference. Furthermore, the results are on a continuous scale allowing a direct numerical comparison of all algorithms under test.</p>
 <div class="sourceCode"><pre class="sourceCode javascript"><code class="sourceCode javascript">...                                   <span class="co">// &lt;=  General options</span>
 <span class="st">&quot;RateMinValue&quot;</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span>                    <span class="co">// &lt;=  Minimum rating</span>
@@ -190,7 +191,7 @@ $&gt; docker-compose stop</code></pre>
   <span class="op">{</span> ... <span class="op">},</span>                            <span class="co">// &lt;=  Next test set starts here</span>
   ....
 ]</code></pre></div>
-<h1 id="browser-support">4. Browser Support</h1>
+<!-- <h1 id="browser-support">4. Browser Support</h1>
 <p>BeaqleJS in general will run well in any recent web browser out in the wild. The only noteworthy exceptions are the Internet Explorer versions below 9 which still have a market share of a few percent and unfortunately miss the required FileAPI. Participants will get a warning if they open the listening test with one of these old versions.</p>
 <h2 id="required-html5-features">4.1 Required HTML5 Features</h2>
 <ul>
@@ -350,11 +351,11 @@ $&gt; docker-compose stop</code></pre>
 <li><p><code>saveRatings(TestIdx)</code> is used to obtain the ratings from the sliders or buttons in the DOM and to store them in an arbitrary format in the predefined <code>this.TestState.Ratings[TestIdx].*</code> object.</p></li>
 <li><p><code>readRatings(TestIdx)</code> is intended to read the ratings for  from <code>this.TestState.Ratings[TestIdx]</code> and to reapply them to the sliders or buttons in the DOM. This is primarily used during switching back and forth in the test sequence.</p></li>
 <li><p><code>formatResults(TestIdx)</code> is automatically called after the final test in the sequence. It is supposed to evaluate and summarize the ratings and to store the final results in <code>this.TestState.EvalResults</code>. It should return a string containing the results formatted in a human readable manner (HTML). This will be presented to the listener after the last test and the <code>EvalResults</code> structure may be send to a web service (see <a href="#online-submission">Online Submission</a>).</p></li>
-</ul>
-<h1 id="contact">7. Contact</h1>
+</ul> -->
+<h1 id="contact">3. Contact</h1>
 <p><a href="http://hsu-ant.github.io/beaqlejs" class="uri">http://hsu-ant.github.io/beaqlejs</a></p>
 <p>skraft (AT) hsu-hh.de</p>
-<h1 id="license">8. License</h1>
+<h1 id="license">4. License</h1>
 <p>The complete sources, html and script files as well as images are released under the <em>GPLv3 license</em>. A copy of the GPL is provided in the <code>LICENSE.txt</code> file.</p>
 </body>
 </html>
