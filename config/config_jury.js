@@ -33,10 +33,10 @@ var TestConfig = {
       "TestID": "id_1",
       "Files": {
             "Reference": "audio/Measurement08_3s.wav",
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": ""
+            "1": "happy",
+            "2": "happy",
+            "3": "happy",
+            "4": "happy"
         }
     },
     // 
@@ -45,10 +45,10 @@ var TestConfig = {
       "TestID": "id_2",
       "Files": {
             "Reference": "audio/Measurement12_3s.wav",
-            "1": "",
-            "2": "",
-            "3": "",
-            "4": ""
+            "1": "sad",
+            "2": "sad",
+            "3": "sad",
+            "4": "sad"
         }
     },
     // 
