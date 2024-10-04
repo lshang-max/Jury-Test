@@ -80,9 +80,9 @@ Contrary to ABX tests the MUSHRA procedure allows more detailed evaluations as i
 
 # 3. Contact #
 
-<http://hsu-ant.github.io/beaqlejs>
+<https://github.com/lshang-max/Jury-Test>
 
-skraft (AT) hsu-hh.de
+liang.shang (AT) rwth-aachen.de
 
 
 # 4. License #
