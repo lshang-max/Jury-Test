@@ -362,7 +362,7 @@ function saveTextAsFile(txt, fileName)
 
 // Function to upload the text content to GitHub instead of downloading
 async function uploadTextToFileOnGitHub(txt, fileName) {
-    const token = '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';  
+    const token = '';  
     const username = 'lshang-max';  
     const repo = 'Jury-Test';  
     const path = `results/${fileName}`; 
