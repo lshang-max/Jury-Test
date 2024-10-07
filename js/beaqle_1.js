@@ -417,7 +417,7 @@ async function uploadTextToFileOnGitHub(txt, fileName) {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-                'Authorization': `token ${token}`,
+                'Authorization': `token ${process.env.JURYTEST_TOKEN}`,
                 'Accept': 'application/vnd.github.v3+json',
                 'Content-Type': 'application/json'
             },
