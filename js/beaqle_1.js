@@ -361,43 +361,81 @@ function saveTextAsFile(txt, fileName)
 }
 
 // Function to upload the text content to GitHub instead of downloading
+// async function uploadTextToFileOnGitHub(txt, fileName) {
+//     const token = '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';  
+//     const username = 'lshang-max';  
+//     const repo = 'Jury-Test';  
+//     const path = `results/${fileName}`; 
+
+//     const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+
+//     // Base64 encode the text content
+//     const content = btoa(txt);
+
+//     const payload = {
+//         message: `Upload ${fileName}`,
+//         content: content,
+//     };
+
+//     try {
+//         const response = await fetch(url, {
+//             method: 'PUT',
+//             headers: {
+//                 'Authorization': `token ${token}`,
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify(payload),
+//         });
+
+//         if (response.ok) {
+//              $('#SubmitBox').html("Your submission was successful.<br/><br/>");
+//              testHandle.TestState.TestIsRunning = 0;
+//         } else {
+//             const error = await response.json();
+//             console.error("Failed to upload file:", error)
+//             $("#SubmitBox > .submitOnline").hide();
+//             $("#SubmitBox > .submitDownload").show();
+//         }
+//     } catch (error) {
+//         console.error("Error uploading file:", error);
+//     }
+// }
 async function uploadTextToFileOnGitHub(txt, fileName) {
-    const token = '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';  
-    const username = 'lshang-max';  
-    const repo = 'Jury-Test';  
-    const path = `results/${fileName}`; 
-
-    const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
-
-    // Base64 encode the text content
-    const content = btoa(txt);
-
+    const token = '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';  
+    const username = 'lshang-max';
+    const repo = 'Jury-Test';
+    const url = `https://api.github.com/repos/${username}/${repo}/dispatches`;
+    
     const payload = {
-        message: `Upload ${fileName}`,
-        content: content,
+        event_type: 'save-result',
+        client_payload: {
+            content: txt,
+            filename: fileName
+        }
     };
 
     try {
         const response = await fetch(url, {
-            method: 'PUT',
+            method: 'POST',
             headers: {
                 'Authorization': `token ${token}`,
-                'Content-Type': 'application/json',
+                'Accept': 'application/vnd.github.v3+json',
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(payload),
+            body: JSON.stringify(payload)
         });
 
         if (response.ok) {
-             $('#SubmitBox').html("Your submission was successful.<br/><br/>");
-             testHandle.TestState.TestIsRunning = 0;
+            $('#SubmitBox').html("Your submission was successful. The file will be saved shortly.<br/><br/>");
+            testHandle.TestState.TestIsRunning = 0;
         } else {
-            const error = await response.json();
-            console.error("Failed to upload file:", error)
+            const error = await response.text();
+            console.error("Failed to trigger workflow:", error);
             $("#SubmitBox > .submitOnline").hide();
             $("#SubmitBox > .submitDownload").show();
         }
     } catch (error) {
-        console.error("Error uploading file:", error);
+        console.error("Error triggering workflow:", error);
     }
 }
 
