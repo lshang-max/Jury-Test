@@ -401,7 +401,7 @@ function saveTextAsFile(txt, fileName)
 //     }
 // }
 async function uploadTextToFileOnGitHub(txt, fileName) {
-    const token = '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';  
+    const token = '';  
     const username = 'lshang-max';
     const repo = 'Jury-Test';
     const url = `https://api.github.com/repos/${username}/${repo}/dispatches`;
