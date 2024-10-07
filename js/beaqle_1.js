@@ -360,6 +360,45 @@ function saveTextAsFile(txt, fileName)
 	downloadLink.click();
 }
 
+// Function to upload the text content to GitHub instead of downloading
+async function uploadTextToFileOnGitHub(txt, fileName) {
+    const token = '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';  
+    const username = 'lshang-max';  
+    const repo = 'Jury-Test';  
+    const path = `results/${fileName}`;  
+
+    const url = `https://api.github.com/repos/${username}/${repo}/contents/${path}`;
+
+    // Base64 encode the text content
+    const content = btoa(txt);
+
+    const payload = {
+        message: `Upload ${fileName}`,
+        content: content,
+    };
+
+    try {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Authorization': `token ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload),
+        });
+
+        if (response.ok) {
+             $('#SubmitBox').html("Your submission was successful.<br/><br/>");
+             testHandle.TestState.TestIsRunning = 0;
+        } else {
+            const error = await response.json();
+            console.error("Failed to upload file:", error);
+        }
+    } catch (error) {
+        console.error("Error uploading file:", error);
+    }
+}
+
 // shuffle array entries using the Fisher-Yates algorithm
 // implementation inspired by http://bost.ocks.org/mike/shuffle/
 function shuffleArray(array) {
@@ -485,6 +524,8 @@ $.extend({ alert: function (message, title) {
         $('#BtnStartTest').button();
         $('#BtnSubmitData').button({ icons: { primary: 'ui-icon-signal-diag' }});     
         $('#BtnDownloadData').button({ icons: { primary: 'ui-icon-arrowthickstop-1-s' }});
+        // $('#BtnDownloadData').button({ icons: { primary: 'ui-icon-arrowthickstop-1-s' }});
+
                 
 
         // install handler to warn user when test is running and he tries to leave the page
@@ -824,7 +865,6 @@ $.extend({ alert: function (message, title) {
     // ###################################################################
     // submit test results to server
     ListeningTest.prototype.SubmitTestResults = function () {
-
         var UserObj = new Object();
         UserObj.UserName = $('#UserName').val();
         UserObj.UserEmail = $('#UserEMail').val();
@@ -832,51 +872,56 @@ $.extend({ alert: function (message, title) {
 
         var EvalResults = this.TestState.EvalResults;        
         EvalResults.push(UserObj)
+
+        // saveTextAsFile(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".txt");
+        uploadTextToFileOnGitHub(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".json");
+
+        this.TestState.TestIsRunning = 0;
         
-        var testHandle = this;
-        $.ajax({
-                    type: "POST",
-                    timeout: 5000,
-                    url: testHandle.TestConfig.BeaqleServiceURL,
-                    data: {'testresults':JSON.stringify(EvalResults), 'username':UserObj.UserName},
-                    dataType: 'json'})
-            .done( function (response){
-                    if (response.error==false) {
-                        $('#SubmitBox').html("Your submission was successful.<br/><br/>");
-                        testHandle.TestState.TestIsRunning = 0;
-                    } else {
-                        $('#SubmitError').show();
-                        $('#SubmitError > #ErrorCode').html(response.message);
-                        $("#SubmitBox > .submitOnline").hide();
-                        if (testHandle.TestConfig.SupervisorContact) {
-                            $("#SubmitBox > .submitEmail").show();
-                            $(".supervisorEmail").html(testHandle.TestConfig.SupervisorContact);
-                        }
-                        if (testHandle.browserFeatures.webAPIs['Blob']) {
-                            $("#SubmitBox > .submitDownload").show();
-                        } else {
-                            $("#SubmitBox > .submitDownload").hide();
-                            $("#ResultsBox").show();
-                        }
-                        $('#SubmitData').button('option',{ icons: { primary: 'ui-icon-alert' }});
-                    }
-                })
-            .fail (function (xhr, ajaxOptions, thrownError){
-                    $('#SubmitError').show();
-                    $('#SubmitError > #ErrorCode').html(xhr.status);
-                    $("#SubmitBox > .submitOnline").hide();
-                    if (testHandle.TestConfig.SupervisorContact) {
-                        $("#SubmitBox > .submitEmail").show();
-                        $(".supervisorEmail").html(testHandle.TestConfig.SupervisorContact);
-                    }
-                    if (testHandle.browserFeatures.webAPIs['Blob']) {
-                        $("#SubmitBox > .submitDownload").show();
-                    } else {
-                        $("#SubmitBox > .submitDownload").hide();
-                        $("#ResultsBox").show();
-                    }
-                });
-        $('#BtnSubmitData').button('option',{ icons: { primary: 'load-indicator' }});
+        // var testHandle = this;
+        // $.ajax({
+        //             type: "POST",
+        //             timeout: 5000,
+        //             url: testHandle.TestConfig.BeaqleServiceURL,
+        //             data: {'testresults':JSON.stringify(EvalResults), 'username':UserObj.UserName},
+        //             dataType: 'json'})
+        //     .done( function (response){
+        //             if (response.error==false) {
+        //                 $('#SubmitBox').html("Your submission was successful.<br/><br/>");
+        //                 testHandle.TestState.TestIsRunning = 0;
+        //             } else {
+        //                 $('#SubmitError').show();
+        //                 $('#SubmitError > #ErrorCode').html(response.message);
+        //                 $("#SubmitBox > .submitOnline").hide();
+        //                 if (testHandle.TestConfig.SupervisorContact) {
+        //                     $("#SubmitBox > .submitEmail").show();
+        //                     $(".supervisorEmail").html(testHandle.TestConfig.SupervisorContact);
+        //                 }
+        //                 if (testHandle.browserFeatures.webAPIs['Blob']) {
+        //                     $("#SubmitBox > .submitDownload").show();
+        //                 } else {
+        //                     $("#SubmitBox > .submitDownload").hide();
+        //                     $("#ResultsBox").show();
+        //                 }
+        //                 $('#SubmitData').button('option',{ icons: { primary: 'ui-icon-alert' }});
+        //             }
+        //         })
+        //     .fail (function (xhr, ajaxOptions, thrownError){
+        //             $('#SubmitError').show();
+        //             $('#SubmitError > #ErrorCode').html(xhr.status);
+        //             $("#SubmitBox > .submitOnline").hide();
+        //             if (testHandle.TestConfig.SupervisorContact) {
+        //                 $("#SubmitBox > .submitEmail").show();
+        //                 $(".supervisorEmail").html(testHandle.TestConfig.SupervisorContact);
+        //             }
+        //             if (testHandle.browserFeatures.webAPIs['Blob']) {
+        //                 $("#SubmitBox > .submitDownload").show();
+        //             } else {
+        //                 $("#SubmitBox > .submitDownload").hide();
+        //                 $("#ResultsBox").show();
+        //             }
+        //         });
+        // $('#BtnSubmitData').button('option',{ icons: { primary: 'load-indicator' }});
 
     }
 
@@ -893,6 +938,7 @@ $.extend({ alert: function (message, title) {
         EvalResults.push(UserObj)
 
         saveTextAsFile(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".txt");
+        // uploadTextToFileOnGitHub(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".json");
 
         this.TestState.TestIsRunning = 0;
     }
