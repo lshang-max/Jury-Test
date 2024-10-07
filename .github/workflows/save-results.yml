@@ -21,5 +21,4 @@ jobs:
           git commit -m "Add results file: ${{ github.event.client_payload.filename }}"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.JURYTEST_TOKEN }}  # 使用 GitHub Secrets
-
+          GITHUB_TOKEN: ${{ secrets.JURYTEST_TOKEN }}  
