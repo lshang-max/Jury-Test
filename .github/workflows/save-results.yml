@@ -1,23 +1,25 @@
-name: Save Results
+name: Upload File
 
 on:
   repository_dispatch:
     types: [save-result]
 
 jobs:
-  save-result:
+  upload:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      
-      - name: Create Results File
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Create file
         run: |
-          mkdir -p results
-          echo "${{ github.event.client_payload.content }}" > "results/${{ github.event.client_payload.filename }}"
-      
-      - name: Commit and Push Changes
+          echo "${{ github.event.client_payload.content }}" > results/${{ github.event.client_payload.filename }}
+
+      - name: Commit and push
         run: |
           git add results/
-          git commit -m "Save result: ${{ github.event.client_payload.filename }}"
-          git push https://x-access-token:${{ secrets.JURYTEST_TOKEN }}@github.com/lshang-max/Jury-Test.git HEAD:main
+          git commit -m "Add results file: ${{ github.event.client_payload.filename }}"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.JURYTEST_TOKEN }}  # 使用 GitHub Secrets
 
