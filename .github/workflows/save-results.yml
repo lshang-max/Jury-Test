@@ -4,23 +4,20 @@ on:
   repository_dispatch:
     types: [save-result]
 
-permissions:
-  contents: write  # 允许写入仓库内容
-
 jobs:
   save-result:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
+      - uses: actions/checkout@v2
+      
       - name: Create Results File
         run: |
           mkdir -p results
           echo "${{ github.event.client_payload.content }}" > "results/${{ github.event.client_payload.filename }}"
-
+      
       - name: Commit and Push Changes
         run: |
           git add results/
           git commit -m "Save result: ${{ github.event.client_payload.filename }}"
-          git push
+          git push https://x-access-token:${{ secrets.JURYTEST_TOKEN }}@github.com/lshang-max/Jury-Test.git HEAD:main
+
