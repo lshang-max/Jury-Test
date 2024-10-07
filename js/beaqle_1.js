@@ -392,7 +392,9 @@ async function uploadTextToFileOnGitHub(txt, fileName) {
              testHandle.TestState.TestIsRunning = 0;
         } else {
             const error = await response.json();
-            console.error("Failed to upload file:", error);
+            console.error("Failed to upload file:", error)
+            $("#SubmitBox > .submitOnline").hide();
+            $("#SubmitBox > .submitDownload").show();
         }
     } catch (error) {
         console.error("Error uploading file:", error);
