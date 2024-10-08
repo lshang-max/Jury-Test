@@ -905,34 +905,40 @@ $.extend({ alert: function (message, title) {
     // submit test results to server
     ListeningTest.prototype.SubmitTestResults = async function () {
         var UserObj = new Object();
-        UserObj.UserName = $('#UserName').val();
-        UserObj.UserEmail = $('#UserEMail').val();
+        // UserObj.UserName = $('#UserName').val();
+        // UserObj.UserEmail = $('#UserEMail').val();
         UserObj.UserComment = $('#UserComment').val();
     
         var EvalResults = this.TestState.EvalResults;        
         EvalResults.push(UserObj);
     
         const resultsContent = JSON.stringify(EvalResults);
-    
+        const filename = `results_${Date.now()}.txt`;
+        // const filename = `${UserObj.UserName}.txt`; 
+
         try {
-            const response = await fetch('https://jury-test.glitch.me/submit', {
+            const response = await fetch('https://cuboid-aquamarine-erigeron.glitch.me/submit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    testresults: resultsContent,
-                    username: UserObj.UserName
+                    filename: filename, 
+                    content: resultsContent 
                 }),
             });
     
             if (response.ok) {
                 const data = await response.json();
                 $('#SubmitBox').html(data.message);
+                $('#SubmitBox').html("Your submission was successful. The file will be saved shortly.<br/><br/>");
             } else {
                 const error = await response.json();
                 $('#SubmitError').show();
                 $('#SubmitError > #ErrorCode').html(error.error);
+                $("#SubmitBox > .submitOnline").hide();
+                $("#SubmitBox > .submitDownload").show();
+
             }
         } catch (error) {
             console.error("Error submitting test results:", error);
