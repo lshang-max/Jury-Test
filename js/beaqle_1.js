@@ -903,19 +903,57 @@ $.extend({ alert: function (message, title) {
 
     // ###################################################################
     // submit test results to server
-    ListeningTest.prototype.SubmitTestResults = function () {
+    ListeningTest.prototype.SubmitTestResults = async function () {
         var UserObj = new Object();
         UserObj.UserName = $('#UserName').val();
         UserObj.UserEmail = $('#UserEMail').val();
         UserObj.UserComment = $('#UserComment').val();
-
+    
         var EvalResults = this.TestState.EvalResults;        
-        EvalResults.push(UserObj)
+        EvalResults.push(UserObj);
+    
+        const resultsContent = JSON.stringify(EvalResults);
+    
+        try {
+            const response = await fetch('https://jury-test.glitch.me/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    testresults: resultsContent,
+                    username: UserObj.UserName
+                }),
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                $('#SubmitBox').html(data.message);
+            } else {
+                const error = await response.json();
+                $('#SubmitError').show();
+                $('#SubmitError > #ErrorCode').html(error.error);
+            }
+        } catch (error) {
+            console.error("Error submitting test results:", error);
+            $('#SubmitError').show();
+            $('#SubmitError > #ErrorCode').html("An error occurred during submission.");
+        }
+    
+        this.TestState.TestIsRunning = 0; 
 
-        // saveTextAsFile(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".txt");
-        uploadTextToFileOnGitHub(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".json");
+        // var UserObj = new Object();
+        // UserObj.UserName = $('#UserName').val();
+        // UserObj.UserEmail = $('#UserEMail').val();
+        // UserObj.UserComment = $('#UserComment').val();
 
-        this.TestState.TestIsRunning = 0;
+        // var EvalResults = this.TestState.EvalResults;        
+        // EvalResults.push(UserObj)
+
+        // // saveTextAsFile(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".txt");
+        // uploadTextToFileOnGitHub(JSON.stringify(EvalResults), getDateStamp() + "_" + UserObj.UserName + ".json");
+
+        // this.TestState.TestIsRunning = 0;
         
         // var testHandle = this;
         // $.ajax({
