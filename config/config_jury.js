@@ -2,7 +2,7 @@
 var TestConfig = {
   
   "TestName": "Jury Demo Test",
-  "RateScalePng": "img/scale_abs.png",
+  "RateScalePng": "img/scale_jury.png",
   "RateScaleBgPng": "img/scale_abs_background.png",
 
 
