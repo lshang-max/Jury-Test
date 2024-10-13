@@ -1240,7 +1240,7 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
                 relID = fileID;  
             }
             
-            var adjectives = ['','Bright', 'Warm', 'Soft', 'Clear', 'Sharp'];
+            var adjectives = ['','Loud', 'Unpleasant','Disturbing','Humming','Obtrusive','Noisy','Droning','Monotonous','Vibrating'];
             var adjective = adjectives[i];
             row[i]  = tab.insertRow(-1);
             cell[0] = row[i].insertCell(-1);
@@ -1262,7 +1262,7 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
             // this.addAudio(TestIdx, fileID, relID);
             
             cell[3] = row[i].insertCell(-1);
-            var adjectives = [ '','Bright', 'Warm', 'Soft', 'Clear', 'Sharp'];
+            var adjectives = [ '','Soft', 'Pleasant ', 'not Disturbing', 'not Humming', 'Negligible','not Noisy','not Droning','Varied','not Vibrating '];
             var adjective = adjectives[i];
             cell[3].innerHTML = "<span class='testItem'>" +adjective +"</span>";
         }              

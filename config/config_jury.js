@@ -33,10 +33,15 @@ var TestConfig = {
       "TestID": "id_1",
       "Files": {
             "Reference": "audio/Measurement08_3s.wav",
-            "1": "happy",
-            "2": "happy",
-            "3": "happy",
-            "4": "happy"
+            "1": "soft",
+            "2": "pleasant",
+            "3": "not disturbing",
+            "4": "not humming",
+            "5": "negligible",
+            "6": "not noisy",
+            "7": "not droning",
+            "8": "varied",
+            "9": "not vibrating "
         }
     },
     // 
@@ -45,10 +50,15 @@ var TestConfig = {
       "TestID": "id_2",
       "Files": {
             "Reference": "audio/Measurement12_3s.wav",
-            "1": "sad",
-            "2": "sad",
-            "3": "sad",
-            "4": "sad"
+            "1": "soft",
+            "2": "pleasant",
+            "3": "not disturbing",
+            "4": "not humming",
+            "5": "negligible",
+            "6": "not noisy",
+            "7": "not droning",
+            "8": "varied",
+            "9": "not vibrating "
         }
     },
     // 
@@ -57,10 +67,15 @@ var TestConfig = {
       "TestID": "id_3",
       "Files": {
             "Reference": "audio/Measurement12_3s.wav",
-            "1": "audio/Measurement08_3s.wav",
-            "2": "audio/Measurement08_3s.wav",
-            "3": "audio/Measurement08_3s.wav",
-            "4": "audio/Measurement08_3s.wav"
+            "1": "soft",
+            "2": "pleasant",
+            "3": "not disturbing",
+            "4": "not humming",
+            "5": "negligible",
+            "6": "not noisy",
+            "7": "not droning",
+            "8": "varied",
+            "9": "not vibrating "
         }
     },
     //    
@@ -69,10 +84,15 @@ var TestConfig = {
        "TestID": "id_4",
        "Files": {
             "Reference": "audio/Measurement08_3s.wav",
-            "1": "audio/Measurement08_3s.wav",
-            "2": "audio/Measurement08_3s.wav",
-            "3": "audio/Measurement08_3s.wav",
-            "4": "audio/Measurement08_3s.wav"
+            "1": "soft",
+            "2": "pleasant",
+            "3": "not disturbing",
+            "4": "not humming",
+            "5": "negligible",
+            "6": "not noisy",
+            "7": "not droning",
+            "8": "varied",
+            "9": "not vibrating "
         }
     },
 
