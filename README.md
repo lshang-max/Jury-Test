@@ -14,6 +14,7 @@ BeaqleJS (**b**rowser based **e**valuation of **a**udio **q**uality and **c**omp
 To get a better impression about its functionality there are one test sites for the Jury test classes based on the BeaqleJS:
 
 * <https://lshang-max.github.io/Jury-Test/>
+* <https://lshang-max.github.io/Jury-Test/audiotest.html>
 
 
 # 2. Test Configuration #
