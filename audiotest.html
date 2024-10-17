@@ -1,0 +1,136 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Test</title>
+</head>
+<body>
+
+    <h1>Audio Test</h1>
+    <p>Please play the audio and adjust your phone's volume to a relaxed and comfortable level. After the test, please return.</p>
+    <button id="startAudio">Start Audio</button>
+    <button id="backButton">back to jury test</button>
+    <script>
+        let audioContext;
+
+        document.getElementById('startAudio').addEventListener('click', function () {
+
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            // load and play
+            fetch('https://raw.githubusercontent.com/lshang-max/Jury-Test/main/audio/Measurement08_3s.mp3') 
+                .then(response => response.arrayBuffer())
+                .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+                .then(audioBuffer => {
+                    const audioSource = audioContext.createBufferSource();
+                    audioSource.buffer = audioBuffer;
+                    audioSource.connect(audioContext.destination);
+                    audioSource.start(0);
+                })
+                .catch(error => console.error('Error with decoding audio data', error));
+        });
+
+
+        // back to jury test
+        document.getElementById('backButton').addEventListener('click', function () {
+            window.location.href = 'https://lshang-max.github.io/Jury-Test/'; 
+        });
+
+    </script>
+
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Test</title>
+
+    <!-- Add some CSS styles for centering content and adjusting font size -->
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Center content vertically */
+            margin: 0;
+            flex-direction: column; /* Arrange elements in a column */
+            text-align: center; /* Center text */
+        }
+
+        p {
+            font-size: 20px; /* Paragraph font size */
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 18px; /* Button font size */
+            padding: 10px 20px; /* Increase button size with padding */
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Audio Test</h1>
+
+    <!-- Instruction text -->
+    <p>Please play the audio and adjust your phone's volume to a relaxed and comfortable level. After the test, please return.</p>
+
+    <button id="startAudio">Start Audio</button>
+
+    <!-- Button to return to the home page -->
+    <button id="backButton">Return to Home</button>
+
+    <script>
+        let audioContext;
+        let isPlaying = false; // Flag to check if audio is playing
+
+        document.getElementById('startAudio').addEventListener('click', function () {
+            // Create audio context if it doesn't exist
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            // Check if audio is already playing
+            if (!isPlaying) {
+                isPlaying = true; // Set flag to true
+                // Fetch and play audio file
+                fetch('https://raw.githubusercontent.com/lshang-max/Jury-Test/main/audio/Measurement08_3s.mp3')
+                    .then(response => response.arrayBuffer())
+                    .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+                    .then(audioBuffer => {
+                        const audioSource = audioContext.createBufferSource();
+                        audioSource.buffer = audioBuffer;
+                        audioSource.connect(audioContext.destination);
+                        audioSource.start(0);
+                        // Reset flag after audio finishes playing
+                        audioSource.onended = function() {
+                            isPlaying = false; // Reset the flag when audio ends
+                        };
+                    })
+                    .catch(error => {
+                        console.error('Error with decoding audio data', error);
+                        isPlaying = false; // Reset the flag on error as well
+                    });
+            }
+        });
+
+        // Add event listener for the return button to navigate back to the home page
+        document.getElementById('backButton').addEventListener('click', function () {
+            window.location.href = 'https://lshang-max.github.io/Jury-Test/'; // Navigate to the home page
+        });
+    </script>
+
+</body>
+</html>
+
+
+
