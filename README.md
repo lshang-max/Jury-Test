@@ -19,59 +19,30 @@ To get a better impression about its functionality there are one test sites for 
 
 # 2. Test Configuration #
 
-## 2.1 General Options ##
+## 2.1 Jury Test ##
 
-The available options can be divided into a set of general options which apply to all test classes and other options, including file declarations, that are specific for a single test class.
+In a Jury test, which is a type of differential semantic test, listeners evaluate a series of items by using a slider to rate each one based on its quality or characteristics.
 
-```javascript
-var TestConfig = {
-  "TestName": "My Listening Test",   // <=  Name of the test
-  "LoopByDefault": true,             // <=  Enable looped playback by default
-  "AutoReturnByDefault": true,       // <=  Always start playback from loop/track begin
-  "ShowFileIDs": false,              // <=  Show file IDs for debugging (never
-                                     //     enable this during real test!)
-  "ShowResults": false,              // <=  Show table with test results at the end
-  "EnableABLoop": true,              // <=  Show controls to loop playback with an
-                                     //     AB range slider
-  "EnableOnlineSubmission": false,   // <=  Enable transmission of JSON encoded
-                                     //     results to a web service
-  "BeaqleServiceURL": "",            // <=  URL of the web service
-  "SupervisorContact": "",           // <=  Email address of supervisor to contact for
-                                     //     help or for submission of results by email
-  "RandomizeTestOrder": true,        // <=  Present test sets in a random order
-  "MaxTestsPerRun": -1,              // <=  Only run a random subset of all available
-                                     //     tests, set to -1 to disable
-  "AudioRoot": "",                   // <=  path to prepend to all audio URLs in the testsets
-  "Testsets": [ {...}, {...}, ... ], // <=  Definition of test sets and files, more
-                                     //     details below
-}
-```
-
-## 2.2 Jury Test ##
-
-In a Jury test (ITU-R BS.1116-1) the listener gets presented an item marked as reference together with several anonymous test items. By using a slider for each test item he has to rate how close the items are to the reference on top. Among the test items there is usually also one hidden reference and one, or several, anchor signals to prove the validity of the ratings and the qualification of the participants.
-
-Contrary to ABX tests the MUSHRA procedure allows more detailed evaluations as it is possible to compare more than one algorithm to a reference. Furthermore, the results are on a continuous scale allowing a direct numerical comparison of all algorithms under test.
+Unlike MUSHRA tests, the Jury method allows listeners to express their opinions freely without a reference item, making the evaluation more subjective. The results are presented on a continuous scale, which makes it easy to directly compare all the algorithms being tested.
 
 ```javascript
 ...                                   // <=  General options
 "RateMinValue": 0,                    // <=  Minimum rating
 "RateMaxValue": 100,                  // <=  Maximum rating
 "RateDefaultValue":0,                 // <=  Default rating
-"RequireMaxRating": false,            // <=  At least one of the ratings in a testset
-                                      //     has to be at the maximum value
+
 "Testsets": [
   { "Name": "Schubert 1",             // <=  Name of the test set
     "TestID": "id1_1",                // <=  Unique test set ID, necessary for
                                       //     internal referencing
     "Files": {                        // <=  Array with test files
-      "Reference": "audio/ref.wav",   // <=  Every MUSHRA test set needs exactly
+      "Reference": "audio/ref.wav",   // <=  Every JURY test set needs exactly
                                       //     one(!) file with a "Reference" label
-      "label_1": "audio/algo_1.wav",  // <=  Various files to be tested, the labels
-      "label_2": "audio/algo_2.wav",  //     can be freely chosen as desired but
-      "label_3": "audio/algo_3.wav",  //     have to be unique inside a test set
-      "anchor": "audio/algo_anc.wav", //      ...
-      }
+      "label_1": "happy",             // <=  Various words to be tested, the labels
+      "label_2": "sad",               //     can be freely chosen as desired but
+      "label_3": "bright",            //     have to be unique inside a test set
+      "anchor":  "soft",              //      ...
+      } 
   },
   { ... },                            // <=  Next test set starts here
   ....
