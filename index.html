@@ -67,15 +67,15 @@
         <!-- edit here if you want to change the welcome message  and instructions -->
 
         <div style="text-align:left">
-            Thanks for your interest in participating in the listening test. The overall test will roughly take XX minutes. Please take the time and carefully rate every item.
+            Thank you for participating in the listening test. The overall test will take around XX minutes. Your task is to listen to the different sounds and rate their overall quality on a 5 point scale. 
             <br />
             <br />
             Instructions:
             <ul>
-                <li>Make sure you're using headphones.</li>
+                <li>Make sure you are using headphones.</li>
                 <li>Adjust the volume to a comfortable level and be in a calm, quiet place before starting.</li>
                 <li>Listen to the test files first to get familiar with them, then rate their overall quality.</li>
-                <li>Focus on the overall impression of each test item. </li>
+                <li>Focus on the overall impression of each sound. </li>
             </ul>
         </div>
         <br />
@@ -109,6 +109,7 @@
                 Please download and save the results. Entering a name or email address is not mandatory 
                 but it would help us to contact you if we have further questions. You can also leave a comment.
             </p>
+
             <table border=0 style="margin-left: auto;margin-right: auto;">
             <!-- <tr><td>Name:</td><td><input id="UserName" type="text" size="40" maxlength="40" /></td></tr> -->
             <!-- <tr><td>Email:</td><td><input id="UserEMail" type="text" size="40" maxlength="40" /></td></tr> -->
@@ -121,23 +122,23 @@
                     <input id="hearingLossNo" name="hearingLoss" type="radio" value="no" />
                 </td>
             </tr>
+
             <tr>
                 <td>Headphone Brand:</td>
                 <td>
-                    <input id="sony" name="headphoneBrand" type="radio" value="Sony" />
-                    <label for="sony">Sony</label>
-            
-                    <input id="bose" name="headphoneBrand" type="radio" value="Bose" />
-                    <label for="bose">Bose</label>
-            
-                    <!-- <input id="airpods" name="headphoneBrand" type="radio" value="AirPods" />
-                    <label for="airpods">AirPods</label> -->
-            
-                    <input id="otherBrand" name="headphoneBrand" type="radio" value="Other" />
-                    <label for="otherBrand">Other</label>
-                    <input id="otherBrandText" name="otherBrandText" type="text" placeholder="Please specify" />
+                    <select id="headphoneBrand" name="headphoneBrand">
+                        <option value="">--Select your brand--</option>
+                        <option value="Bose">Bose</option>
+                        <option value="Sony">Sony</option>
+                        <option value="Sennheiser">Sennheiser</option>
+                        <option value="Beats">Beats</option>
+                        <option value="JBL">JBL</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Other">Other</option>
+                    </select>
                 </td>
             </tr>
+
             <tr>
                 <td>Type of headphones:</td>
                 <td>
