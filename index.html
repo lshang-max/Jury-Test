@@ -72,7 +72,7 @@
             <br />
             Instructions:
             <ul>
-                <li>Make sure you're using high-quality headphones and a good soundcard.</li>
+                <li>Make sure you're using headphones.</li>
                 <li>Adjust the volume to a comfortable level and be in a calm, quiet place before starting.</li>
                 <li>Listen to all the test files first to get familiar with them, then rate their overall quality.</li>
                 <li>Focus on the overall impression of each test item. </li>
@@ -122,7 +122,7 @@
                 </td>
             </tr>
             <tr>
-                <td>Headphone set:</td>
+                <td>Headphone Brand:</td>
                 <td>
                     <input id="sony" name="headphoneBrand" type="radio" value="Sony" />
                     <label for="sony">Sony</label>
@@ -138,9 +138,27 @@
                     <input id="otherBrandText" name="otherBrandText" type="text" placeholder="Please specify" />
                 </td>
             </tr>
+            <tr>
+                <td>Type of headphones:</td>
+                <td>
+                    <input id="overEar" name="headphoneType" type="radio" value="Over-ear" />
+                    <label for="overEar">Over-ear</label>
+            
+                    <input id="onEar" name="headphoneType" type="radio" value="On-ear" />
+                    <label for="onEar">On-ear</label>
+            
+                    <input id="inEar" name="headphoneType" type="radio" value="In-ear" />
+                    <label for="inEar">In-ear</label>
+                </td>
+            </tr>
+            <tr>
+                <td>User Comment:</td>
+                <td>
+                    <textarea id="UserComment" cols="40" rows="4" placeholder="Your comment..."></textarea>
+                </td>
+            </tr>
 
-
-            <tr><td></td><td><textarea id="UserComment" cols="40" rows="4">Your comment...</textarea></td></tr>
+            <!-- <tr><td></td><td><textarea id="UserComment" cols="40" rows="4">Your comment...</textarea></td></tr> -->
             </table>
             <br />
             <button id="BtnSubmitData" class="submitOnline" onclick="testHandle.SubmitTestResults();">Submit</button>

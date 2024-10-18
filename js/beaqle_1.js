@@ -916,6 +916,9 @@ $.extend({ alert: function (message, title) {
         if (UserObj.HeadphoneBrand === "Other") {
             UserObj.HeadphoneBrand = $('#otherBrandText').val();  // Get the text if "Other" is selected
             }
+        // 4. Get Headphone Type
+        UserObj.HeadphoneType = $('input[name="headphoneType"]:checked').val();
+        // 5. Get User Comment
         UserObj.UserComment = $('#UserComment').val();
     
         var EvalResults = this.TestState.EvalResults;        
