@@ -1294,11 +1294,11 @@ JuryTest.prototype.createTestDOM = function (TestIdx) {
                     max: juryConf.RateMaxValue,
                     animate: false,
                     orientation: "horizontal",
-                    // stop: function(event, ui) {
-                    //     $(this).slider("widget").find(".ui-slider-handle").css({
-                    //         "border": "2px solid #2980b9"  
-                    //     });
-                    // }
+                    stop: function(event, ui) {
+                        $(this).slider("widget").find(".ui-slider-handle").css({
+                            "border": "2px solid #2980b9"  
+                        });
+                    }
             });
             
             $(this).css('background-image', 'url('+juryConf.RateScaleBgPng+')');
