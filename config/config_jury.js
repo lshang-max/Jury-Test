@@ -2,13 +2,13 @@
 var TestConfig = {
   
   "TestName": "Jury Demo Test",
-  "RateScalePng": "img/scale_jury.png",
+  "RateScalePng": "img/scale_abs.png",
   "RateScaleBgPng": "img/scale_abs_background.png",
 
 
   "RateMinValue": 1,
   "RateMaxValue": 5,
-  "RateDefaultValue":1,
+  "RateDefaultValue":0,
   "ShowFileIDs": false,
   "ShowResults": false,
   "LoopByDefault": true,

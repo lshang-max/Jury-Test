@@ -101,7 +101,7 @@
             </div>
             <p class="submitOnline">
                 <!-- edit here if you want to change the information about online submission, e.g. add privacy policy information -->
-                Please submit the results to our server. Leave a comment and include your headphone set information. 
+                Please submit the results to our server.
                 The submission process might take a few minutes, so if the "Submit" button doesn't work right away, try clicking it a few more times.
             </p>
             <p class="submitDownload">
@@ -112,6 +112,34 @@
             <table border=0 style="margin-left: auto;margin-right: auto;">
             <!-- <tr><td>Name:</td><td><input id="UserName" type="text" size="40" maxlength="40" /></td></tr> -->
             <!-- <tr><td>Email:</td><td><input id="UserEMail" type="text" size="40" maxlength="40" /></td></tr> -->
+            <tr><td>Age:</td><td><input id="Age" type="text" size="40" maxlength="40" /></td></tr>
+            <tr>    <td>Hearing Loss:</td>
+                <td>
+                    <label for="hearingLossYes">Yes</label>
+                    <input id="hearingLossYes" name="hearingLoss" type="radio" value="yes" />
+                    <label for="hearingLossNo">No</label>
+                    <input id="hearingLossNo" name="hearingLoss" type="radio" value="no" />
+                </td>
+            </tr>
+            <tr>
+                <td>Headphone set:</td>
+                <td>
+                    <input id="sony" name="headphoneBrand" type="radio" value="Sony" />
+                    <label for="sony">Sony</label>
+            
+                    <input id="bose" name="headphoneBrand" type="radio" value="Bose" />
+                    <label for="bose">Bose</label>
+            
+                    <!-- <input id="airpods" name="headphoneBrand" type="radio" value="AirPods" />
+                    <label for="airpods">AirPods</label> -->
+            
+                    <input id="otherBrand" name="headphoneBrand" type="radio" value="Other" />
+                    <label for="otherBrand">Other</label>
+                    <input id="otherBrandText" name="otherBrandText" type="text" placeholder="Please specify" />
+                </td>
+            </tr>
+
+
             <tr><td></td><td><textarea id="UserComment" cols="40" rows="4">Your comment...</textarea></td></tr>
             </table>
             <br />
@@ -158,13 +186,13 @@
         </div>
         
         <div>
-            <input id="ChkLoopAudio" type="checkbox" value="Loop" /><label for="ChkLoopAudio">Loop</label>
-            <input id="ChkAutoReturn" type="checkbox" value="Auto Return" /><label for="ChkAutoReturn">Auto Return</label>
+            <!-- <input id="ChkLoopAudio" type="checkbox" value="Loop" /><label for="ChkLoopAudio">Loop</label>
+            <input id="ChkAutoReturn" type="checkbox" value="Auto Return" /><label for="ChkAutoReturn">Auto Return</label> -->
         </div>
         
         <div id="Volume">
-            Volume
-            <div id="VolumeSlider"></div>
+            <!-- Volume
+            <div id="VolumeSlider"></div> -->
         </div>
         
         <br style="clear:both"/>

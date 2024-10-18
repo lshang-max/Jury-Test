@@ -907,6 +907,15 @@ $.extend({ alert: function (message, title) {
         var UserObj = new Object();
         // UserObj.UserName = $('#UserName').val();
         // UserObj.UserEmail = $('#UserEMail').val();
+        // 1. Get Age
+        UserObj.Age = $('#Age').val();
+        // 2. Get Hearing Loss (Yes or No)
+        UserObj.HearingLoss = $('input[name="hearingLoss"]:checked').val();
+        // 3. Get Headphone Brand (and handle 'Other' if selected)
+        UserObj.HeadphoneBrand = $('input[name="headphoneBrand"]:checked').val();
+        if (UserObj.HeadphoneBrand === "Other") {
+            UserObj.HeadphoneBrand = $('#otherBrandText').val();  // Get the text if "Other" is selected
+            }
         UserObj.UserComment = $('#UserComment').val();
     
         var EvalResults = this.TestState.EvalResults;        
