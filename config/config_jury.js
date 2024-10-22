@@ -29,7 +29,7 @@ var TestConfig = {
     //   },
     // },
     {
-      "Name": "Test Sound 1",
+      "Name": "Test Sound",
       "TestID": "id_1",
       "Files": {
             "Reference": "audio/Measurement08_3s.wav",
@@ -46,7 +46,7 @@ var TestConfig = {
     },
     // 
     {
-      "Name": "Test Sound 2",
+      "Name": "Test Sound",
       "TestID": "id_2",
       "Files": {
             "Reference": "audio/Measurement12_3s.wav",
@@ -63,7 +63,7 @@ var TestConfig = {
     },
     // 
     {
-      "Name": "Test Sound 3",
+      "Name": "Test Sound",
       "TestID": "id_3",
       "Files": {
             "Reference": "audio/Measurement12_3s.wav",
@@ -80,7 +80,7 @@ var TestConfig = {
     },
     //    
     {
-       "Name": "Test Sound 4",
+       "Name": "Test Sound",
        "TestID": "id_4",
        "Files": {
             "Reference": "audio/Measurement08_3s.wav",
