@@ -942,10 +942,15 @@ $.extend({ alert: function (message, title) {
         // 2. Get Hearing Loss (Yes or No)
         UserObj.HearingLoss = $('input[name="hearingLoss"]:checked').val();
         // 3. Get Headphone Brand (and handle 'Other' if selected)
-        UserObj.HeadphoneBrand = $('input[name="headphoneBrand"]:checked').val();
-        if (UserObj.HeadphoneBrand === "Other") {
-            UserObj.HeadphoneBrand = $('#otherBrandText').val();  // Get the text if "Other" is selected
-            }
+        // Get the selected headphone brand from the dropdown
+        var selectedBrand = $('#headphoneBrand').val();  // Get the value of the selected option in the dropdown
+        // Store the result in your UserObj
+        UserObj.HeadphoneBrand = selectedBrand;
+        // UserObj.HeadphoneBrand = $('input[name="headphoneBrand"]:checked').val();
+
+        // if (UserObj.HeadphoneBrand === "Other") {
+        //     UserObj.HeadphoneBrand = $('#otherBrandText').val();  // Get the text if "Other" is selected
+        //     }
         // 4. Get Headphone Type
         UserObj.HeadphoneType = $('input[name="headphoneType"]:checked').val();
         // 5. Get User Comment
